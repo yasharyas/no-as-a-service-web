@@ -3,6 +3,7 @@
 import { Github } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { APP_META } from '@/lib/constants';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 
 export default function Header() {
   return (
@@ -18,15 +19,25 @@ export default function Header() {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
-          <a
-            href={APP_META.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-muted transition-colors"
-            aria-label="View source on GitHub"
-          >
-            <Github className="h-5 w-5" />
-          </a>
+          <div className="relative rounded-lg border-[0.75px] border-transparent p-0.5">
+            <GlowingEffect
+              spread={20}
+              glow={true}
+              disabled={false}
+              proximity={32}
+              inactiveZone={0.01}
+              borderWidth={2}
+            />
+            <a
+              href={APP_META.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative block p-2 rounded-md bg-secondary text-secondary-foreground hover:bg-muted transition-colors"
+              aria-label="View source on GitHub"
+            >
+              <Github className="h-5 w-5" />
+            </a>
+          </div>
           <ThemeToggle />
         </div>
       </div>

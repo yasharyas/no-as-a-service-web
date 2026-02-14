@@ -1,5 +1,6 @@
 import { Github, Heart } from 'lucide-react';
 import { APP_META } from '@/lib/constants';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 
 export default function Footer() {
   return (
@@ -18,16 +19,26 @@ export default function Footer() {
         </p>
 
         <div className="flex items-center gap-4">
-          <a
-            href={APP_META.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="View source on GitHub"
-          >
-            <Github className="h-4 w-4" />
-            Source
-          </a>
+          <div className="relative rounded-lg border-[0.75px] border-transparent p-0.5">
+            <GlowingEffect
+              spread={20}
+              glow={true}
+              disabled={false}
+              proximity={32}
+              inactiveZone={0.01}
+              borderWidth={2}
+            />
+            <a
+              href={APP_META.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative flex items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="View source on GitHub"
+            >
+              <Github className="h-4 w-4" />
+              Source
+            </a>
+          </div>
           <span className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} NaaS
           </span>

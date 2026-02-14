@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 
 interface GeneratorCardProps {
   reason: string;
@@ -10,7 +11,16 @@ interface GeneratorCardProps {
 export default function GeneratorCard({ reason, loading }: GeneratorCardProps) {
   return (
     <div className="mx-auto w-full max-w-2xl px-4">
-      <div className="relative rounded-2xl border border-border bg-card p-8 shadow-lg sm:p-10" role="region" aria-label="Generated rejection reason" aria-live="polite">
+      <div className="relative rounded-2xl border-[0.75px] border-border bg-card p-2 shadow-lg sm:p-3" role="region" aria-label="Generated rejection reason" aria-live="polite">
+        <GlowingEffect
+          spread={40}
+          glow={true}
+          disabled={false}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={3}
+        />
+        <div className="relative overflow-hidden rounded-xl border-[0.75px] border-border bg-card p-6 sm:p-8">
         <div className="min-h-[120px] flex items-center justify-center">
           {loading ? (
             /* Skeleton shimmer loader */
@@ -32,6 +42,7 @@ export default function GeneratorCard({ reason, loading }: GeneratorCardProps) {
               </motion.p>
             </AnimatePresence>
           )}
+        </div>
         </div>
       </div>
     </div>

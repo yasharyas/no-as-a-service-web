@@ -1,5 +1,6 @@
 import { Terminal } from 'lucide-react';
 import { APP_META } from '@/lib/constants';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 
 export default function ApiDocsPreview() {
   return (
@@ -11,7 +12,16 @@ export default function ApiDocsPreview() {
         Integrate the API into your projects. It&apos;s free and open.
       </p>
 
-      <div className="mx-auto max-w-2xl overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+      <div className="mx-auto max-w-2xl relative rounded-[1.25rem] border-[0.75px] border-border p-2">
+        <GlowingEffect
+          spread={40}
+          glow={true}
+          disabled={false}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={3}
+        />
+        <div className="relative overflow-hidden rounded-xl border-[0.75px] border-border bg-card shadow-sm">
         {/* Terminal header */}
         <div className="flex items-center gap-2 border-b border-border bg-muted px-4 py-3">
           <Terminal className="h-4 w-4 text-muted-foreground" />
@@ -49,6 +59,7 @@ export default function ApiDocsPreview() {
           >
             View full documentation on GitHub →
           </a>
+        </div>
         </div>
       </div>
     </section>

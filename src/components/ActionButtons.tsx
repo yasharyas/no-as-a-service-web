@@ -4,6 +4,7 @@ import { RefreshCw, Copy, Check, Share2 } from 'lucide-react';
 import { useState } from 'react';
 import { useClipboard } from '@/hooks/useClipboard';
 import { SHARE_URLS } from '@/lib/constants';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 import type { SharePlatform } from '@/types';
 
 interface ActionButtonsProps {
@@ -53,53 +54,92 @@ export default function ActionButtons({ reason, loading, onGenerate }: ActionBut
   return (
     <div className="mx-auto mt-6 flex max-w-2xl flex-col items-center gap-4 px-4">
       {/* Main buttons */}
-      <div className="flex flex-wrap items-center justify-center gap-3">
+      <div className="flex flex-wrap items-center justify-center gap-4">
         {/* Generate */}
-        <button
-          onClick={onGenerate}
-          disabled={loading}
-          className="flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-md transition-all hover:brightness-110 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
-          aria-label="Generate another rejection reason"
-        >
-          <RefreshCw className={`h-5 w-5 ${loading ? 'animate-spin' : ''}`} />
-          {loading ? 'Generating...' : 'Generate'}
-        </button>
+        <div className="relative rounded-xl border-[0.75px] border-border p-0.5">
+          <GlowingEffect
+            spread={30}
+            glow={true}
+            disabled={false}
+            proximity={48}
+            inactiveZone={0.01}
+            borderWidth={2}
+          />
+          <button
+            onClick={onGenerate}
+            disabled={loading}
+            className="relative flex items-center gap-2 rounded-[10px] bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-md transition-all hover:brightness-110 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
+            aria-label="Generate another rejection reason"
+          >
+            <RefreshCw className={`h-5 w-5 ${loading ? 'animate-spin' : ''}`} />
+            {loading ? 'Generating...' : 'Generate'}
+          </button>
+        </div>
 
         {/* Copy */}
-        <button
-          onClick={handleCopy}
-          disabled={!reason}
-          className="flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-3 font-medium text-card-foreground shadow-sm transition-all hover:bg-muted active:scale-95 disabled:opacity-60"
-          aria-label={copied ? 'Copied to clipboard' : 'Copy rejection reason'}
-        >
-          {copied ? (
-            <>
-              <Check className="h-5 w-5 text-green-500" />
-              Copied!
-            </>
-          ) : (
-            <>
-              <Copy className="h-5 w-5" />
-              Copy
-            </>
-          )}
-        </button>
+        <div className="relative rounded-xl border-[0.75px] border-border p-0.5">
+          <GlowingEffect
+            spread={30}
+            glow={true}
+            disabled={false}
+            proximity={48}
+            inactiveZone={0.01}
+            borderWidth={2}
+          />
+          <button
+            onClick={handleCopy}
+            disabled={!reason}
+            className="relative flex items-center gap-2 rounded-[10px] bg-card px-5 py-3 font-medium text-card-foreground shadow-sm transition-all hover:bg-muted active:scale-95 disabled:opacity-60"
+            aria-label={copied ? 'Copied to clipboard' : 'Copy rejection reason'}
+          >
+            {copied ? (
+              <>
+                <Check className="h-5 w-5 text-green-500" />
+                Copied!
+              </>
+            ) : (
+              <>
+                <Copy className="h-5 w-5" />
+                Copy
+              </>
+            )}
+          </button>
+        </div>
 
         {/* Share */}
-        <button
-          onClick={handleNativeShare}
-          disabled={!reason}
-          className="flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-3 font-medium text-card-foreground shadow-sm transition-all hover:bg-muted active:scale-95 disabled:opacity-60"
-          aria-label="Share rejection reason"
-        >
-          <Share2 className="h-5 w-5" />
-          Share
-        </button>
+        <div className="relative rounded-xl border-[0.75px] border-border p-0.5">
+          <GlowingEffect
+            spread={30}
+            glow={true}
+            disabled={false}
+            proximity={48}
+            inactiveZone={0.01}
+            borderWidth={2}
+          />
+          <button
+            onClick={handleNativeShare}
+            disabled={!reason}
+            className="relative flex items-center gap-2 rounded-[10px] bg-card px-5 py-3 font-medium text-card-foreground shadow-sm transition-all hover:bg-muted active:scale-95 disabled:opacity-60"
+            aria-label="Share rejection reason"
+          >
+            <Share2 className="h-5 w-5" />
+            Share
+          </button>
+        </div>
       </div>
 
       {/* Share dropdown */}
       {showShare && (
-        <div className="flex flex-wrap justify-center gap-2 rounded-xl border border-border bg-card p-3 shadow-md">
+        <div className="relative rounded-xl border-[0.75px] border-border p-0.5">
+          <GlowingEffect
+            spread={30}
+            glow={true}
+            disabled={false}
+            proximity={48}
+            inactiveZone={0.01}
+            borderWidth={2}
+          />
+          <div className="relative flex flex-wrap justify-center gap-2 rounded-[10px] bg-card p-3 shadow-md">
           <button
             onClick={() => handleShare('twitter')}
             className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-muted transition-colors"
@@ -124,6 +164,7 @@ export default function ActionButtons({ reason, loading, onGenerate }: ActionBut
           >
             🔗 Copy Link
           </button>
+          </div>
         </div>
       )}
     </div>
