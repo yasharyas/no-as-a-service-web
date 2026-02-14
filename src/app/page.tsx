@@ -9,6 +9,7 @@ import HeroSection from '@/components/HeroSection';
 import GeneratorCard from '@/components/GeneratorCard';
 import ActionButtons from '@/components/ActionButtons';
 import CategorySelector from '@/components/CategorySelector';
+import ErrorBoundary from '@/components/ErrorBoundary';
 import Footer from '@/components/Footer';
 import { useEffect } from 'react';
 import { decodeReasonParam } from '@/lib/utils';
@@ -59,8 +60,10 @@ function HomePage() {
 
 export default function Home() {
   return (
-    <Suspense>
-      <HomePage />
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense>
+        <HomePage />
+      </Suspense>
+    </ErrorBoundary>
   );
 }
