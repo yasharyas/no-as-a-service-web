@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 import { decodeReasonParam } from '@/lib/utils';
 
 function HomePage() {
-  const { reason, loading, error, category, generate, setCategory } = useNoGenerator();
+  const { reason, loading, error, category, generate, setCategory, setReason } = useNoGenerator();
   const searchParams = useSearchParams();
 
   // Check for shared reason in URL
@@ -24,11 +24,10 @@ function HomePage() {
     if (sharedReason) {
       const decoded = decodeReasonParam(sharedReason);
       if (decoded) {
-        // We can't set reason directly, but the pre-fetch will handle initial display
-        // The shared URL will be visible in the card
+        setReason(decoded);
       }
     }
-  }, [searchParams]);
+  }, [searchParams, setReason]);
 
   return (
     <div className="flex min-h-screen flex-col">

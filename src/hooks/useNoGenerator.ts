@@ -112,6 +112,10 @@ export function useNoGenerator() {
     cacheRef.current = []; // Clear cache on category change
   }, []);
 
+  const setReason = useCallback((reason: string) => {
+    setState((prev) => ({ ...prev, reason, error: null }));
+  }, []);
+
   return {
     reason: state.reason,
     loading: state.loading,
@@ -119,5 +123,6 @@ export function useNoGenerator() {
     category: state.category,
     generate,
     setCategory,
+    setReason,
   };
 }
