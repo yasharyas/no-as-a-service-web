@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { useNoGenerator } from '@/hooks/useNoGenerator';
 import Header from '@/components/Header';
@@ -8,11 +9,13 @@ import HeroSection from '@/components/HeroSection';
 import GeneratorCard from '@/components/GeneratorCard';
 import ActionButtons from '@/components/ActionButtons';
 import CategorySelector from '@/components/CategorySelector';
-import HowItWorks from '@/components/HowItWorks';
-import ApiDocsPreview from '@/components/ApiDocsPreview';
 import Footer from '@/components/Footer';
 import { useEffect } from 'react';
 import { decodeReasonParam } from '@/lib/utils';
+
+// Lazy load below-the-fold sections
+const HowItWorks = dynamic(() => import('@/components/HowItWorks'));
+const ApiDocsPreview = dynamic(() => import('@/components/ApiDocsPreview'));
 
 function HomePage() {
   const { reason, loading, error, category, generate, setCategory, setReason } = useNoGenerator();
