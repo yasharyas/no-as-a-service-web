@@ -33,7 +33,7 @@ function HomePage() {
     <div className="flex min-h-screen flex-col">
       <Header />
 
-      <main className="flex-1">
+      <main className="flex-1" id="main-content">
         <HeroSection />
         <GeneratorCard reason={reason} loading={loading} />
         <ActionButtons reason={reason} loading={loading} onGenerate={generate} />

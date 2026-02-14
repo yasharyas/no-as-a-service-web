@@ -10,7 +10,7 @@ interface GeneratorCardProps {
 export default function GeneratorCard({ reason, loading }: GeneratorCardProps) {
   return (
     <div className="mx-auto w-full max-w-2xl px-4">
-      <div className="relative rounded-2xl border border-border bg-card p-8 shadow-lg sm:p-10">
+      <div className="relative rounded-2xl border border-border bg-card p-8 shadow-lg sm:p-10" role="region" aria-label="Generated rejection reason" aria-live="polite">
         <div className="min-h-[120px] flex items-center justify-center">
           {loading ? (
             /* Skeleton shimmer loader */
