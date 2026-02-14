@@ -6,9 +6,10 @@ import { PROXY_ENDPOINT } from './constants';
  * Uses the local /api/no proxy to avoid CORS and add caching.
  */
 export async function fetchNoReason(): Promise<NoResponse> {
-  const res = await fetch(PROXY_ENDPOINT, {
+  const res = await fetch(`${PROXY_ENDPOINT}?_t=${Date.now()}`, {
     method: 'GET',
     headers: { 'Accept': 'application/json' },
+    cache: 'no-store',
   });
 
   if (!res.ok) {
@@ -28,14 +29,17 @@ export async function fetchNoReason(): Promise<NoResponse> {
 export async function fetchNoReasonByCategory(
   category: string,
 ): Promise<NoResponse> {
-  const endpoint =
+  const sep = category === 'all' ? '?' : '&';
+  const base =
     category === 'all'
       ? PROXY_ENDPOINT
       : `${PROXY_ENDPOINT}?category=${encodeURIComponent(category)}`;
+  const endpoint = `${base}${sep}_t=${Date.now()}`;
 
   const res = await fetch(endpoint, {
     method: 'GET',
     headers: { 'Accept': 'application/json' },
+    cache: 'no-store',
   });
 
   if (!res.ok) {

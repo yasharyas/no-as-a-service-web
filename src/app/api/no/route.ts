@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { API_BASE_URL, EDGE_CACHE_DURATION } from '@/lib/constants';
+import { API_BASE_URL } from '@/lib/constants';
 
 export const runtime = 'edge';
 
@@ -20,6 +20,7 @@ export async function GET(request: NextRequest) {
         'Accept': 'application/json',
         'User-Agent': 'NaaS-Web/1.0',
       },
+      cache: 'no-store',
     });
 
     // Handle rate limiting
@@ -47,7 +48,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(data, {
         status: 200,
         headers: {
-          'Cache-Control': `s-maxage=${EDGE_CACHE_DURATION}, stale-while-revalidate`,
+          'Cache-Control': 'no-store, no-cache, must-revalidate',
           'Content-Type': 'application/json',
         },
       });
@@ -62,7 +63,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(data, {
       status: 200,
       headers: {
-        'Cache-Control': `s-maxage=${EDGE_CACHE_DURATION}, stale-while-revalidate`,
+        'Cache-Control': 'no-store, no-cache, must-revalidate',
         'Content-Type': 'application/json',
       },
     });
